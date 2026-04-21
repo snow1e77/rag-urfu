@@ -9,8 +9,8 @@ const newChatBtn = document.getElementById('new-chat-btn');
 const dragOverlay = document.getElementById('drag-overlay');
 const attachedFilesContainer = document.getElementById('attached-files');
 
-let chats = JSON.parse(localStorage.getItem('nexus_chats')) || {};
-let currentChatId = localStorage.getItem('nexus_current_chat') || null;
+let chats = JSON.parse(localStorage.getItem('falal_chats')) || {};
+let currentChatId = localStorage.getItem('falal_current_chat') || null;
 
 // Initialize
 function init() {
@@ -41,8 +41,8 @@ function startNewChat() {
 }
 
 function saveChats() {
-    localStorage.setItem('nexus_chats', JSON.stringify(chats));
-    localStorage.setItem('nexus_current_chat', currentChatId);
+    localStorage.setItem('falal_chats', JSON.stringify(chats));
+    localStorage.setItem('falal_current_chat', currentChatId);
 }
 
 function renderHistory() {
