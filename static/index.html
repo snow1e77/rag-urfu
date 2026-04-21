@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falal RAG</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Marked for Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="drag-overlay" class="drag-overlay" style="display: none;">
+        <div class="drag-content">
+            <i class="fa-solid fa-file-arrow-up"></i>
+            <h2>Отпустите PDF для загрузки</h2>
+        </div>
+    </div>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-brain"></i>
+                <span>Falal RAG</span>
+            </div>
+            <div class="sidebar-info" style="margin-bottom: 20px; flex-shrink: 0;">
+                <p>Ваш персональный RAG-ассистент.</p>
+                <br>
+                <p style="color: #666; font-size: 13px;">Загрузите PDF через скрепку внизу и общайтесь с вашими документами.</p>
+            </div>
+            
+            <button id="new-chat-btn" class="new-chat-btn"><i class="fa-solid fa-plus"></i> Новый чат</button>
+            <div class="history-list" id="history-list">
+                <!-- Chat history items will appear here -->
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <div class="chat-header">
+                <h2>Центр знаний</h2>
+                <div id="status-indicator" class="status-indicator">Готов к работе</div>
+            </div>
+            <div id="attached-files" class="attached-files"></div>
+
+            <div class="messages" id="messages-container">
+                <div class="message bot">
+                    <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="text">Привет! Я Falal, ваш умный ИИ-помощник. Загрузите PDF-документ (кнопка 🖇️ внизу), и я смогу отвечать на вопросы по его содержимому.</div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <form id="chat-form" class="chat-form">
+                    <label for="file-upload" class="upload-btn tooltip" data-tooltip="Загрузить PDF">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="file-upload" accept=".pdf" style="display: none;">
+                    
+                    <textarea id="question-input" placeholder="Задайте вопрос по документам..." rows="1"></textarea>
+                    
+                    <button type="submit" class="send-btn" id="send-btn" disabled>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>

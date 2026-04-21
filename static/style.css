@@ -1,0 +1,398 @@
+:root {
+    --bg-color: #212121;
+    --sidebar-bg: #171717;
+    --text-primary: #ECECEC;
+    --text-secondary: #AAAAAA;
+    --accent-color: #10a37f;
+    --message-bot-bg: #2f2f2f;
+    --message-user-bg: #212121;
+    --border-color: #404040;
+    --input-bg: #2f2f2f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+.logo i {
+    color: var(--accent-color);
+}
+
+.sidebar-info {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.chat-header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    z-index: 10;
+}
+
+.chat-header h2 {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.status-indicator {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 0 40px 0;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.message {
+    display: flex;
+    gap: 20px;
+    padding: 24px 40px;
+    font-size: 15px;
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.bot {
+    background-color: var(--message-bot-bg);
+    border-radius: 12px;
+    margin: 10px 40px;
+    padding: 24px 30px;
+}
+
+.message.user {
+    background-color: var(--message-user-bg);
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    color: white;
+    flex-shrink: 0;
+}
+
+.message.user .avatar {
+    background-color: #6b7280;
+}
+
+.text {
+    flex: 1;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.text context {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.input-area {
+    padding: 30px 40px;
+    background-image: linear-gradient(180deg, rgba(33,33,33,0), var(--bg-color) 20%);
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.chat-form {
+    display: flex;
+    align-items: center;
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    padding: 10px 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+    transition: border-color 0.2s;
+}
+
+.chat-form:focus-within {
+    border-color: var(--text-secondary);
+}
+
+.upload-btn {
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 10px;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.upload-btn:hover {
+    color: var(--text-primary);
+}
+
+#question-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-family: inherit;
+    resize: none;
+    padding: 10px;
+    outline: none;
+    max-height: 200px;
+}
+
+#question-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.send-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.send-btn:not([disabled]):hover {
+    color: var(--accent-color);
+}
+
+/* Spinner */
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.fa-spinner { animation: spin 1s linear infinite; }
+
+/* History list styles */
+.new-chat-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+.new-chat-btn:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.history-item {
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.2s, color 0.2s;
+}
+.history-item:hover {
+    background-color: rgba(255,255,255,0.05);
+    color: var(--text-primary);
+}
+.history-item.active {
+    background-color: var(--message-bot-bg);
+    color: var(--text-primary);
+}
+
+/* History item redesign for edit/delete */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.history-item-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.history-item-actions {
+    display: none;
+    gap: 8px;
+    margin-left: 10px;
+}
+.history-item:hover .history-item-actions {
+    display: flex;
+}
+.action-icon {
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    font-size: 13px;
+}
+.action-icon:hover {
+    color: var(--text-primary);
+}
+.action-icon.delete:hover {
+    color: #ef4444; /* red */
+}
+
+/* Drag Overlay */
+.drag-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(16, 163, 127, 0.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.drag-content {
+    text-align: center;
+    border: 4px dashed rgba(255,255,255,0.5);
+    border-radius: 20px;
+    padding: 60px 100px;
+}
+.drag-content i {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+.drag-content h2 {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+/* Markdown styling inside .text */
+.text p { margin-bottom: 1em; }
+.text p:last-child { margin-bottom: 0; }
+.text strong { color: #fff; font-weight: 600; }
+.text ul, .text ol { margin-left: 20px; margin-bottom: 1em; }
+.text li { margin-bottom: 5px; }
+.text pre {
+    background-color: #111;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 1em;
+    border: 1px solid var(--border-color);
+}
+.text code {
+    font-family: Consolas, Monaco, monospace;
+    font-size: 14px;
+    background-color: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.text pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Attached files styles */
+.attached-files {
+    padding: 10px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 9;
+}
+.attached-files:empty {
+    display: none;
+}
+.file-tag {
+    background-color: var(--message-bot-bg);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: fadeIn 0.2s ease;
+}
+.file-tag i.fa-file-pdf {
+    color: #ef4444; /* red icon for pdf */
+}
+.file-tag .remove-file {
+    cursor: pointer;
+    margin-left: 4px;
+    transition: color 0.2s;
+}
+.file-tag .remove-file:hover {
+    color: var(--text-primary);
+}
