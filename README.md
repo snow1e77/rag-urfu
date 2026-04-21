@@ -84,7 +84,7 @@ pie title Этапы обработки 1 запроса (в %)
 
 1. **Клонируйте репозиторий:**
    ```bash
-   git clone https://github.com/твое_имя_пользователя/rag-urfu.git
+   git clone https://github.com/snow1e77/rag-urfu.git
    cd rag-urfu
    ```
 
