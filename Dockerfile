@@ -21,11 +21,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем все файлы проекта в контейнер
 COPY --chown=user:user . .
 
-# Переключаемся на пользователя user
-USER user
+# Создаем папку для сохранения временных файлов от root и выдаем права нашему пользователю
+RUN mkdir -p /app/temp /app/chroma_db && chown -R user:user /app/temp /app/chroma_db
 
-# Создаем папку для сохранения временных файлов (чтобы не было ошибок доступа)
-RUN mkdir -p /app/temp && mkdir -p /app/chroma_db
+# Теперь безопасно переключаемся на пользователя user
+USER user
 
 # Порт 7860 - стандартный порт для Hugging Face Spaces
 EXPOSE 7860
